@@ -1,0 +1,69 @@
+# Ignore Visual Studio temporary files, build results, and
+# folder-based project model files.
+#
+# Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (Mono Auto Generated)
+mono_crash.*
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Team Foundation Server
+tf.exe
+
+# Project specific files
+.vscode
+.idea
+.project
+.classpath
+.settings
+/bin/
+/obj/
+*.appx
+*.appxsym
+*.appxsym
+*.appxupload
+*.asx
+*.cache
+*.coverage
+*.csproj.user
+*.dbmdl
+*.docstates
+*.ilk
+*.ipch
+*.jsproj
+*.jsproj.user
+*.log
+*.log
+*.ncrunchsolution
+*.ncrunchproject
+*.nupkg
+*.opendb
+*.publishsettings
+*.refresh
+*.resharper
+*.ruleset
+*.runsettings
+*.sdf
+*.swp
+*.temp
+*.testsettings
+*.userosscache
+*.vs/
+*.vs/
+*.vspscc
+*.vsmdi
+*.vssscc
+*.vsz
+*.wdb
+*.sln.docstates
+*.vscode
+*.sqlproj
