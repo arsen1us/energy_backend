@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "I6NFmZGcF+s16jldwOdnsyggJUOt+EMKEChdHksLQUs=",
+  "Source": "energy_backend",
+  "BasePath": "_content/energy_backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
