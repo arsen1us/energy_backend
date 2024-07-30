@@ -13,6 +13,16 @@ configurationBuilder.AddJsonFile("appsettings.json");
 var configuration = configurationBuilder.Build();
 string connectionString = configuration.GetConnectionString("Default");
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("default", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowAnyOrigin();
+    });
+});
+
 builder.Services.AddDbContext<EnergyContext>(options =>
 {
     options.UseSqlServer(connectionString);
@@ -26,7 +36,9 @@ app.UseRouting();
 
 app.UseStaticFiles();
 
-app.MapGet("/", () => "Hello World!");
+app.UseCors("default");
+
+app.MapGet("/{id}", (string id) => $"Hello World! id - {id}");
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 app.Run();

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using energy_backend;
+using energy_backend.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace energy_backend.Controllers
 {
@@ -13,9 +16,17 @@ namespace energy_backend.Controllers
             _database = database;
         }
 
-        public IActionResult Index(string id)
+        [HttpGet]
+        public IActionResult Get()
         {
             return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] UserRegistrationModel user)
+        {
+            string jsonUser = JsonSerializer.Serialize(user);
+            return Json(jsonUser);
         }
     }
 }
