@@ -1,4 +1,5 @@
 using energy_backend;
+using energy_backend.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<EnergyContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+builder.Services.AddTransient<IUserService, UserService>();
 
 var app = builder.Build();
 

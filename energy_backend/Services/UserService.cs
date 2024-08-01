@@ -3,11 +3,11 @@ using energy_backend.Services;
 
 namespace energy_backend.Services
 {
-    public class UserServices : IUserService
+    public class UserService : IUserService
     {
         EnergyContext _database;
 
-        public UserServices(EnergyContext database)
+        public UserService(EnergyContext database)
         {
             _database = database;
         }
