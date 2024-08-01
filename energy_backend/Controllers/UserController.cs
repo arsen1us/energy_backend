@@ -33,7 +33,7 @@ namespace energy_backend.Controllers
             return Json(jsonUser);
         }
 
-        [Route("registration")]
+        [Route("register")]
         [HttpPost]
         public async Task<IActionResult> Registration([FromBody] UserRegistrationModel regUser)
         {
@@ -55,7 +55,10 @@ namespace energy_backend.Controllers
             return Ok();
         }
 
-        [HttpPost("check-email")]
+        // POST: api/users/check-email
+
+        [Route("check-email")]
+        [HttpPost]
         public async Task<IActionResult> CheckLoginAvailability([FromBody] CheckUserNameModel user)
         {
             if(await _database.Users.AnyAsync(u => u.Login == user.UserName))
@@ -72,7 +75,10 @@ namespace energy_backend.Controllers
             }
         }
 
-        [HttpPost("check-password")]
+        // POST: api/users/check-password
+
+        [Route("check-password")]
+        [HttpPost]
         public async Task<IActionResult> CheckPassword([FromBody] CheckUserPassword password)
         {
             if(password.Password.Length < 8)
@@ -93,6 +99,27 @@ namespace energy_backend.Controllers
                 string jsonMessage = JsonSerializer.Serialize(message);
                 return Json(jsonMessage);
             }
+        }
+
+        // POST: api/users/authenticate
+
+        [Route("authenticate")]
+        [HttpPost]
+        public async Task<IActionResult> Authenticate([FromBody] UserAuthenticationModel authUser)
+        {
+            if (!await _userService.UserExists(authUser.UserName, authUser.Password))
+            {
+                string message = "The user is not registered yet";
+                string jsonMessage = JsonSerializer.Serialize(message);
+                return Json(jsonMessage);
+            }
+            else
+            {
+                string message = "Authentication success!";
+                string jsonMessage = JsonSerializer.Serialize(message);
+                return Json(jsonMessage);
+            }
+
         }
     }
 }

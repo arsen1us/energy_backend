@@ -19,7 +19,10 @@ namespace energy_backend.Services
         // Delete user by id
         public Task DeleteByIdAsync(string id);
         
-        // User exists???
-        public Boolean UserExists(string id);
+        // User exists by id???
+        public Task<Boolean> UserExists(string id);
+
+        // User exists by userName and password???
+        public Task<Boolean> UserExists(string userName, string password);
     }
 }

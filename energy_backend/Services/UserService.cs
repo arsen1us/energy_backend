@@ -1,5 +1,7 @@
 ﻿using energy_backend;
+using energy_backend.Models;
 using energy_backend.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace energy_backend.Services
 {
@@ -19,7 +21,7 @@ namespace energy_backend.Services
 
         public async Task DeleteByIdAsync(string id)
         {
-            if (!UserExists(id))
+            if (!await UserExists(id))
                 throw new Exception("User is not exists");
             User user = await _database.Users.FindAsync(id);
             _database.Users.Remove(user);
@@ -41,10 +43,16 @@ namespace energy_backend.Services
             throw new NotImplementedException();
         }
 
-        public bool UserExists(string id)
+        public async Task<bool> UserExists(string id)
         {
-            User user = _database.Users.FirstOrDefault(u => u.Id == id);
-            if (user != null)
+            if(await _database.Users.AnyAsync(u => u.Id == id))
+                return true;
+            return false;
+        }
+
+        public async Task<bool> UserExists(string userName, string password)
+        {
+            if(await _database.Users.AnyAsync(u => u.Login == userName && u.Password == password))
                 return true;
             return false;
         }
